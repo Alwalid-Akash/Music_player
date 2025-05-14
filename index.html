@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music player</title>
+  <title>Music Player</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/180117f545.js" crossorigin="anonymous"></script>
 </head>
@@ -13,16 +13,27 @@
   <div class="container">
     <div class="music-player">
       <nav>
-        <div class="circl">
+        <div class="circle">
           <i class="fa-solid fa-angle-left"></i>
         </div>
-        <div class="circl">
+        <div class="circle">
           <i class="fa-solid fa-bars"></i>
         </div>
       </nav>
+      <img src="media/thum.png" class="song-img" alt="Song Thumbnail">
+      <h1>Description</h1>
+      <p>NEFFEX - Go!</p>
 
+      <audio id="audio" src="media/Go-NEFFEX.mp3" controls></audio>
+
+      <input type="range" value="0" id="progress">
+
+      <div class="controls">
+        <div><i class="fa-solid fa-backward"></i></div>
+        <div><i class="fa-solid fa-play" id="playPauseBtn"></i></div>
+        <div><i class="fa-solid fa-forward"></i></div>
+      </div>
     </div>
-
   </div>
 </body>
 
