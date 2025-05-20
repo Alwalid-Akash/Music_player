@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music Player</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script src="https://kit.fontawesome.com/180117f545.js" crossorigin="anonymous"></script>
 </head>
 
@@ -20,21 +20,55 @@
           <i class="fa-solid fa-bars"></i>
         </div>
       </nav>
-      <img src="media/thum.png" class="song-img" alt="Song Thumbnail">
+      <img src="media/thum.png" class="song-img" alt="Song Thumbnail" />
       <h1>Description</h1>
       <p>NEFFEX - Go!</p>
 
-      <audio id="audio" src="media/Go-NEFFEX.mp3" controls></audio>
+      <audio id="audio" src="media/Go-NEFFEX.mp3"></audio>
 
-      <input type="range" value="0" id="progress">
+      <input type="range" value="0" id="progress" />
 
       <div class="controls">
         <div><i class="fa-solid fa-backward"></i></div>
-        <div><i class="fa-solid fa-play" id="playPauseBtn"></i></div>
+        <div onclick="playpause()"><i class="fa-solid fa-play" id="playPauseBtn"></i></div>
         <div><i class="fa-solid fa-forward"></i></div>
       </div>
     </div>
   </div>
+
+  <script>
+    let progress = document.getElementById("progress");
+    let song = document.getElementById("audio");
+    let ctrlIcon = document.getElementById("playPauseBtn");
+
+    // Update max duration and current time
+    song.onloadedmetadata = function () {
+      progress.max = song.duration;
+      progress.value = song.currentTime;
+    };
+
+    // Update progress bar as song plays
+    song.addEventListener("timeupdate", () => {
+      progress.value = song.currentTime;
+    });
+
+    // Seek when user drags progress bar
+    progress.addEventListener("input", () => {
+      song.currentTime = progress.value;
+    });
+
+    function playpause() {
+      if (ctrlIcon.classList.contains("fa-pause")) {
+        song.pause();
+        ctrlIcon.classList.remove("fa-pause");
+        ctrlIcon.classList.add("fa-play");
+      } else {
+        song.play();
+        ctrlIcon.classList.remove("fa-play");
+        ctrlIcon.classList.add("fa-pause");
+      }
+    }
+  </script>
 </body>
 
 </html>
